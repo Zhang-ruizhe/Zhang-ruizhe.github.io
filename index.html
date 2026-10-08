@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>山水茶都·信阳 | 我的家乡</title>
+<style>
+    :root{
+        --g900:#1b4332;
+        --g800:#2d6a4f;
+        --g700:#40916c;
+        --g600:#52b788;
+        --g300:#95d5b2;
+        --g100:#d8f3dc;
+        --bg:#f0f7f4;
+        --ink:#2b3a33;
+        --muted:#5f7368;
+        --line:#dcebe3;
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{
+        font-family:"Microsoft YaHei","PingFang SC","Hiragino Sans GB","微软雅黑",sans-serif;
+        background:var(--bg);
+        color:var(--ink);
+        line-height:1.78;
+        -webkit-font-smoothing:antialiased;
+    }
+
+    /* ========== 顶部横幅 ========== */
+    .banner{
+        position:relative;
+        text-align:center;
+        color:#fff;
+        padding:58px 20px 54px;
+        overflow:hidden;
+        background:
+            radial-gradient(900px 320px at 50% -140px, rgba(149,213,178,.38), transparent 70%),
+            linear-gradient(135deg,#1b4332 0%,#2d6a4f 55%,#40916c 100%);
+    }
+    .banner::after{
+        content:"";
+        position:absolute;left:0;right:0;bottom:0;height:1px;
+        background:linear-gradient(90deg,transparent,rgba(149,213,178,.7),transparent);
+    }
+    .banner-eyebrow{
+        display:inline-block;
+        font-size:13px;letter-spacing:.22em;
+        color:var(--g300);
+        border:1px solid rgba(149,213,178,.45);
+        border-radius:999px;
+        padding:3px 16px;
+        margin-bottom:18px;
+    }
+    .banner h1{
+        font-size:clamp(28px,5vw,42px);
+        letter-spacing:.06em;
+        margin-bottom:10px;
+        text-shadow:0 2px 18px rgba(0,0,0,.2);
+    }
+    .banner-sub{font-size:16px;color:rgba(255,255,255,.88);}
+    .banner-tags{
+        list-style:none;
+        display:flex;flex-wrap:wrap;justify-content:center;
+        gap:10px;margin-top:24px;
+    }
+    .banner-tags li{
+        font-size:13px;
+        padding:5px 15px;
+        border-radius:999px;
+        background:rgba(255,255,255,.12);
+        border:1px solid rgba(255,255,255,.2);
+    }
+
+    /* ========== 导航栏 ========== */
+    .nav{
+        position:sticky;top:0;z-index:50;
+        display:flex;flex-wrap:wrap;justify-content:center;gap:4px;
+        padding:10px 12px;
+        background:rgba(27,67,50,.96);
+        backdrop-filter:blur(8px);
+        box-shadow:0 2px 14px rgba(27,67,50,.18);
+    }
+    .nav a{
+        color:#dff3e7;
+        text-decoration:none;
+        font-size:15px;
+        padding:7px 18px;
+        border-radius:999px;
+        transition:.22s;
+    }
+    .nav a:hover{background:var(--g600);color:#fff;}
+
+    /* ========== 主体容器 ========== */
+    .container{
+        width:min(1000px,92%);
+        margin:32px auto 0;
+    }
+    .card{
+        background:#fff;
+        border:1px solid rgba(82,183,136,.16);
+        border-radius:14px;
+        padding:30px 34px;
+        margin-bottom:26px;
+        box-shadow:0 4px 22px rgba(27,67,50,.07);
+    }
+    section[id]{scroll-margin-top:74px;}
+
+    /* 通用标题 */
+    .section-title{
+        display:flex;align-items:center;gap:10px;
+        font-size:21px;
+        color:var(--g900);
+        padding-bottom:12px;
+        margin-bottom:20px;
+        border-bottom:1px dashed #d7e6dd;
+    }
+    .section-title::before{
+        content:"";
+        width:6px;height:22px;
+        border-radius:3px;
+        background:linear-gradient(180deg,var(--g600),var(--g800));
+    }
+
+    /* ========== 印象信阳 ========== */
+    .intro{
+        display:flex;
+        gap:28px;
+        align-items:flex-start;
+    }
+    .intro-figure{
+        position:relative;
+        flex:0 0 320px;
+        margin:0;
+        border-radius:12px;
+        overflow:hidden;
+        background:linear-gradient(135deg,#2d6a4f,#95d5b2);
+        box-shadow:0 6px 20px rgba(27,67,50,.16);
+    }
+    .intro-figure img{
+        display:block;
+        width:100%;height:250px;
+        object-fit:cover;
+        transition:transform .5s;
+    }
+    .intro-figure:hover img{transform:scale(1.05);}
+    .intro-figure figcaption{
+        position:absolute;left:0;right:0;bottom:0;
+        padding:10px 14px;
+        font-size:13px;
+        color:#eafff3;
+        background:linear-gradient(to top,rgba(27,67,50,.88),transparent);
+    }
+    .intro-text p{
+        text-indent:2em;
+        text-align:justify;
+        margin-bottom:10px;
+    }
+    .intro-text p:last-child{margin-bottom:0;}
+
+    /* 数据卡片 */
+    .facts{
+        display:grid;
+        grid-template-columns:repeat(4,1fr);
+        gap:14px;
+        margin-top:26px;
+    }
+    .fact{
+        background:linear-gradient(160deg,#f3faf6,#e2f4ea);
+        border-radius:10px;
+        padding:16px 10px;
+        text-align:center;
+    }
+    .fact b{
+        display:block;
+        font-size:21px;
+        color:var(--g800);
+        letter-spacing:.02em;
+    }
+    .fact span{
+        font-size:13px;
+        color:var(--muted);
+    }
+
+    /* ========== 历史时间轴 ========== */
+    .timeline{
+        list-style:none;
+        position:relative;
+        padding-left:28px;
+    }
+    .timeline::before{
+        content:"";
+        position:absolute;left:5px;top:8px;bottom:8px;
+        width:2px;
+        background:linear-gradient(180deg,var(--g600),rgba(82,183,136,.15));
+    }
+    .timeline li{
+        position:relative;
+        margin-bottom:18px;
+        font-size:15px;
+    }
+    .timeline li:last-child{margin-bottom:0;}
+    .timeline li::before{
+        content:"";
+        position:absolute;left:-28px;top:7px;
+        width:12px;height:12px;
+        border-radius:50%;
+        background:#fff;
+        border:2px solid var(--g600);
+    }
+    .timeline li b{color:var(--g800);}
+
+    /* ========== 景点图集 (新增) ========== */
+    .spot-gallery{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:18px;
+        margin-bottom:22px;
+    }
+    .spot-gallery figure{
+        position:relative;
+        margin:0;
+        border-radius:10px;
+        overflow:hidden;
+        box-shadow:0 4px 14px rgba(27,67,50,.12);
+        background:#eaf7ef;
+    }
+    .spot-gallery img{
+        display:block;
+        width:100%;
+        height:200px;
+        object-fit:cover;
+        transition:transform .4s;
+    }
+    .spot-gallery figure:hover img{
+        transform:scale(1.04);
+    }
+    .spot-gallery figcaption{
+        position:absolute;
+        left:0; right:0; bottom:0;
+        padding:8px 12px;
+        font-size:13px;
+        color:#fff;
+        background:linear-gradient(to top,rgba(27,67,50,.85),transparent);
+    }
+
+    /* ========== 景点表格 ========== */
+    .table-wrap{
+        overflow-x:auto;
+        border:1px solid var(--line);
+        border-radius:10px;
+    }
+    .spot-table{
+        width:100%;
+        min-width:600px;
+        border-collapse:collapse;
+        font-size:15px;
+    }
+    .spot-table th{
+        background:var(--g100);
+        color:var(--g900);
+        font-weight:700;
+        text-align:left;
+        padding:13px 14px;
+        white-space:nowrap;
+    }
+    .spot-table td{
+        padding:13px 14px;
+        border-top:1px solid var(--line);
+        vertical-align:top;
+    }
+    .spot-table td:first-child{
+        font-weight:700;
+        color:var(--g800);
+        white-space:nowrap;
+    }
+    .spot-table tbody tr:nth-child(even){background:#fafdfb;}
+    .spot-table tbody tr:hover{background:#effaf3;}
+
+    /* ========== 美食列表 ========== */
+    .food-list{
+        list-style:none;
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:14px;
+    }
+    .food-list li{
+        background:#f7fbf9;
+        border-left:4px solid var(--g600);
+        border-radius:10px;
+        padding:13px 16px;
+        transition:.22s;
+    }
+    .food-list li:hover{
+        background:#eefaf3;
+        transform:translateX(3px);
+    }
+    .food-list strong{
+        display:block;
+        color:var(--g900);
+        font-size:15px;
+        margin-bottom:2px;
+    }
+    .food-list p{
+        font-size:13.5px;
+        color:var(--muted);
+    }
+
+    /* ========== 茶香毛尖 ========== */
+    .tea-grid{
+        display:grid;
+        grid-template-columns:1.55fr 1fr;
+        gap:26px;
+        align-items:start;
+    }
+    .tea-text p{
+        text-indent:2em;
+        text-align:justify;
+        margin-bottom:10px;
+    }
+    .tea-facts{
+        list-style:none;
+        display:grid;
+        gap:12px;
+    }
+    .tea-facts li{
+        background:linear-gradient(150deg,#eaf7ef,#d8f3dc);
+        border-radius:10px;
+        padding:14px 16px;
+    }
+    .tea-facts b{
+        display:block;
+        color:var(--g800);
+        font-size:16px;
+    }
+    .tea-facts span{
+        font-size:13px;
+        color:var(--muted);
+    }
+
+    /* ========== 出行贴士 ========== */
+    .tips{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:14px;
+    }
+    .tip{
+        background:#f7fbf9;
+        border:1px solid var(--line);
+        border-radius:10px;
+        padding:16px 18px;
+    }
+    .tip h4{
+        font-size:15px;
+        color:var(--g800);
+        margin-bottom:6px;
+    }
+    .tip p{
+        font-size:13.5px;
+        color:var(--muted);
+    }
+
+    /* ========== 相关链接 ========== */
+    .link-list{
+        list-style:none;
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:12px;
+    }
+    .link-list a{
+        display:flex;
+        flex-direction:column;
+        gap:2px;
+        padding:14px 16px;
+        background:#f7fbf9;
+        border:1px solid var(--line);
+        border-radius:10px;
+        text-decoration:none;
+        color:var(--g800);
+        font-weight:600;
+        font-size:15px;
+        transition:.22s;
+    }
+    .link-list a:hover{
+        background:var(--g100);
+        border-color:var(--g600);
+        transform:translateY(-2px);
+        box-shadow:0 6px 16px rgba(45,106,79,.12);
+    }
+    .link-list a span{
+        font-weight:400;
+        font-size:13px;
+        color:var(--muted);
+    }
+
+    /* ========== 页脚 ========== */
+    .footer{
+        text-align:center;
+        padding:30px 20px;
+        margin-top:36px;
+        background:linear-gradient(180deg,#1b4332,#14352a);
+        color:#95d5b2;
+        font-size:14px;
+        line-height:1.9;
+    }
+    .footer-line{
+        font-size:16px;
+        letter-spacing:.3em;
+        color:#d8f3dc;
+        margin-bottom:8px;
+    }
+
+    /* ========== 响应式 ========== */
+    @media (max-width:820px){
+        .intro{flex-direction:column;gap:20px;}
+        .intro-figure{flex:1 1 auto;width:100%;}
+        .intro-figure img{height:230px;}
+        .facts{grid-template-columns:repeat(2,1fr);}
+        .spot-gallery{grid-template-columns:1fr;}
+        .food-list{grid-template-columns:1fr;}
+        .tea-grid{grid-template-columns:1fr;gap:18px;}
+        .tips{grid-template-columns:1fr;}
+        .link-list{grid-template-columns:1fr;}
+        .nav a{padding:6px 12px;font-size:14px;}
+    }
+    @media (max-width:480px){
+        .banner{padding:42px 16px;}
+        .container{width:94%;margin-top:20px;}
+        .card{padding:22px 18px;}
+        .fact b{font-size:18px;}
+    }
+</style>
+</head>
+<body>
+
+    <!-- ========== 顶部横幅 ========== -->
+    <header class="banner">
+        <span class="banner-eyebrow">河南省 · 信阳市 · 申城</span>
+        <h1>山水茶都 · 信阳</h1>
+        <p class="banner-sub">北国江南，江南北国 —— 我的家乡</p>
+        <ul class="banner-tags">
+            <li>中国毛尖之都</li>
+            <li>鄂豫皖革命老区</li>
+            <li>中国四大避暑胜地</li>
+            <li>豫风楚韵</li>
+        </ul>
+    </header>
+
+    <!-- ========== 导航栏 ========== -->
+    <nav class="nav">
+        <a href="#intro">印象信阳</a>
+        <a href="#history">历史人文</a>
+        <a href="#spots">核心景点</a>
+        <a href="#food">特色美食</a>
+        <a href="#tea">茶香毛尖</a>
+        <a href="#tips">出行贴士</a>
+        <a href="#links">相关链接</a>
+    </nav>
+
+    <!-- ========== 主体内容 ========== -->
+    <main class="container">
+
+        <!-- 印象信阳 -->
+        <section class="card" id="intro">
+            <h2 class="section-title">印象信阳</h2>
+            <div class="intro">
+                <figure class="intro-figure">
+                    <!-- 修正了文件夹路径：images -> image -->
+                    <img src="image/xinyang.png" alt="信阳风光" loading="lazy">
+                    <figcaption>大别山北麓 · 淮河上游</figcaption>
+                </figure>
+                <div class="intro-text">
+                    <p>信阳，古称义阳、申州，位于河南省最南部，地处淮河上游、大别山北麓，东邻安徽、南接湖北，素有“北国江南、江南北国”之美誉。</p>
+                    <p>这里山清水秀、气候温润，是中国毛尖之都——信阳毛尖闻名全国、香飘百年。同时，信阳也是鄂豫皖革命老区的核心区域，红色文化底蕴深厚。</p>
+                    <p>信阳饮食兼具南北特色，以炖菜、热干面、南湾鱼等为代表，形成了独特的“豫风楚韵”饮食文化。</p>
+                </div>
+            </div>
+            <div class="facts">
+                <div class="fact"><b>18,908</b><span>总面积（平方公里）</span></div>
+                <div class="fact"><b>2 区 8 县</b><span>行政区划</span></div>
+                <div class="fact"><b>约 620 万</b><span>常住人口</span></div>
+                <div class="fact"><b>2800+</b><span>年建城史</span></div>
+            </div>
+        </section>
+
+        <!-- 历史人文 -->
+        <section class="card" id="history">
+            <h2 class="section-title">历史人文</h2>
+            <ul class="timeline">
+                <li><b>西周</b> —— 周宣王封申伯于申，建申国，信阳别称“申城”由此而来。</li>
+                <li><b>春秋战国</b> —— 楚灭申置县，此地成为楚文化北渐的前沿，中原文化与荆楚文化在此交汇融合。</li>
+                <li><b>北宋</b> —— 为避宋太宗赵光义名讳，改“义阳”为“信阳”，此名沿用至今。</li>
+                <li><b>土地革命时期</b> —— 鄂豫皖革命根据地在此发展壮大，新县曾是苏区首府，红四方面军、红二十五军均在此诞生。</li>
+                <li><b>1934 年</b> —— 红二十五军由光山何家冲出发，踏上长征之路。</li>
+                <li><b>1998 年</b> —— 撤销信阳地区，设立地级信阳市。</li>
+            </ul>
+        </section>
+
+        <!-- 核心景点 -->
+        <section class="card" id="spots">
+            <h2 class="section-title">核心景点</h2>
+            
+            <!-- 新增景点图集，使用准备好的图片 -->
+           <div class="spot-gallery">
+    <figure>
+        <a href="http://www.kikungshan.com/" target="_blank" rel="noopener">
+            <img src="image/jigongshan.jpg" alt="鸡公山云海" loading="lazy">
+        </a>
+        <figcaption>鸡公山 · 云海佛光（点击访问官网）</figcaption>
+    </figure>
+    <figure>
+        <a href="http://www.nanwanhu.cn/" target="_blank" rel="noopener">
+            <img src="image/nanwanhu.png" alt="南湾湖风光" loading="lazy">
+        </a>
+        <figcaption>南湾湖 · 中原第一湖（点击访问官网）</figcaption>
+    </figure>
+</div>
+
+            <div class="table-wrap">
+                <table class="spot-table">
+                    <thead>
+                        <tr>
+                            <th>景点名称</th>
+                            <th>所在位置</th>
+                            <th>景点特色</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>鸡公山</td>
+                            <td>浉河区</td>
+                            <td>中国四大避暑胜地之一，万国建筑博览，云海佛光奇观</td>
+                        </tr>
+                        <tr>
+                            <td>南湾湖</td>
+                            <td>市区西南约 5 公里</td>
+                            <td>中原第一湖，61 座岛屿星罗棋布，盛产南湾鱼</td>
+                        </tr>
+                        <tr>
+                            <td>灵山寺</td>
+                            <td>罗山县灵山风景区</td>
+                            <td>千年古刹，唐明皇御封“国庙”，僧尼同寺的独特文化</td>
+                        </tr>
+                        <tr>
+                            <td>郝堂村</td>
+                            <td>平桥区五里店街道</td>
+                            <td>中国最美休闲乡村，豫南民居典范，夏日荷塘如画</td>
+                        </tr>
+                        <tr>
+                            <td>鄂豫皖苏区首府革命博物馆</td>
+                            <td>新县</td>
+                            <td>全国爱国主义教育示范基地，红色记忆的集中呈现</td>
+                        </tr>
+                        <tr>
+                            <td>黄柏山国家森林公园</td>
+                            <td>商城县</td>
+                            <td>森林覆盖率超九成，天然氧吧，飞瀑幽谷</td>
+                        </tr>
+                        <tr>
+                            <td>西河古村落</td>
+                            <td>商城县</td>
+                            <td>明清古民居群，百年古树参天，山水相映</td>
+                        </tr>
+                        <tr>
+                            <td>汤泉池</td>
+                            <td>商城县</td>
+                            <td>大别山温泉，水温常年约 60℃，疗养度假佳处</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 特色美食 -->
+        <section class="card" id="food">
+            <h2 class="section-title">特色美食</h2>
+            <ul class="food-list">
+                <li>
+                    <strong>信阳毛尖</strong>
+                    <p>中国十大名茶之一，汤色清澈，香气持久，入口鲜爽回甘。</p>
+                </li>
+                <li>
+                    <strong>南湾鱼</strong>
+                    <p>产自南湾湖，肉质细嫩，炖汤鲜美无比，鱼头汤尤为一绝。</p>
+                </li>
+                <li>
+                    <strong>信阳热干面</strong>
+                    <p>融合湖北风味，佐以豆芽、千张，芝麻酱香浓，口感丰富。</p>
+                </li>
+                <li>
+                    <strong>固始鹅块</strong>
+                    <p>信阳经典名菜，肉质紧实，汤汁浓郁，越煮越香。</p>
+                </li>
+                <li>
+                    <strong>罗山大肠汤</strong>
+                    <p>香辣入味，肥而不腻，是本地人早餐桌上的经典。</p>
+                </li>
+                <li>
+                    <strong>石凉粉</strong>
+                    <p>信阳特色夏季小吃，清凉解暑，口感 Q 弹爽滑。</p>
+                </li>
+                <li>
+                    <strong>潢川空心贡面</strong>
+                    <p>细如发丝、中空透气，久煮不烂，曾是宫廷贡品。</p>
+                </li>
+                <li>
+                    <strong>新县将军菜</strong>
+                    <p>大别山野菜，带着红色记忆的乡土味道，清爽解腻。</p>
+                </li>
+            </ul>
+        </section>
+
+        <!-- 茶香毛尖 -->
+        <section class="card" id="tea">
+            <h2 class="section-title">茶香毛尖</h2>
+            <div class="tea-grid">
+                <div class="tea-text">
+                    <p>信阳毛尖又称“豫毛峰”，是中国十大名茶之一，以“细、圆、光、直、多白毫，香高、味浓、汤色绿”著称于世。</p>
+                    <p>其核心产区集中在信阳西部山区，以“五云两潭一寨”最为有名——车云山、集云山、云雾山、天云山、连云山，黑龙潭、白龙潭，以及何家寨。</p>
+                    <p>清明前后，采茶人只取一芽一叶初展，经摊放、生锅、熟锅、烘焙等多道工序精制而成。一杯好毛尖，汤色嫩绿明亮，入口鲜爽，回味悠长。</p>
+                </div>
+                <ul class="tea-facts">
+                    <li><b>1915 年</b><span>巴拿马万国博览会金奖</span></li>
+                    <li><b>五云两潭一寨</b><span>核心产区</span></li>
+                    <li><b>一芽一叶</b><span>明前采摘标准</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 出行贴士 -->
+        <section class="card" id="tips">
+            <h2 class="section-title">出行贴士</h2>
+            <div class="tips">
+                <div class="tip">
+                    <h4>🌿 最佳时节</h4>
+                    <p>4—5 月采茶季，茶山青翠；7—8 月上鸡公山避暑；10 月大别山秋色斑斓。</p>
+                </div>
+                <div class="tip">
+                    <h4>🚄 交通方式</h4>
+                    <p>京广高铁信阳东站直达郑州、武汉、北京；京港澳、沪陕高速在此交汇；明港机场可通航多地。</p>
+                </div>
+                <div class="tip">
+                    <h4>🎁 伴手好礼</h4>
+                    <p>信阳毛尖、板栗、潢川空心贡面、光山十宝、固始笨鸡蛋，都是不错的家乡味道。</p>
+                </div>
+                <div class="tip">
+                    <h4>🗓 行程建议</h4>
+                    <p>Day1 市区南湾湖 + 信阳博物馆；Day2 鸡公山；Day3 新县红色线路或商城黄柏山。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 相关链接 -->
+        <section class="card" id="links">
+            <h2 class="section-title">相关链接</h2>
+            <ul class="link-list">
+                <li>
+                    <a href="https://www.xinyang.gov.cn/" target="_blank" rel="noopener">
+                        信阳市人民政府官方网站
+                        <span>政务公开与城市资讯</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://baike.baidu.com/item/%E4%BF%A1%E9%98%B3%E5%B8%82/13859302?fromtitle=%E4%BF%A1%E9%98%B3&fromid=145830&fr=aladdin" target="_blank" rel="noopener">
+                        信阳 · 百度百科
+                        <span>历史沿革与城市概况</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.kikungshan.com/" target="_blank" rel="noopener">
+                        鸡公山风景区官方网站
+                        <span>避暑胜地 · 万国建筑</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.nanwanhu.cn/" target="_blank" rel="noopener">
+                        南湾湖风景区官方网站
+                        <span>中原第一湖 · 岛屿风光</span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+
+    </main>
+
+    <!-- ========== 页脚 ========== -->
+    <footer class="footer">
+        <p class="footer-line">山水茶都 · 信阳</p>
+        <p>© 2026 我的家乡·信阳 | 计算机网络实验一 静态网页作业</p>
+        <p>学号：PB24111608&nbsp;&nbsp;|&nbsp;&nbsp;姓名：张睿哲</p>
+    </footer>
+
+</body>
+</html>
